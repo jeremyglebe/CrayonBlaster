@@ -12,3 +12,15 @@ texture = ExtResource("2_bvwpg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(107, 0, 76, 18, 6, 110, -15, 74, -80, 114, -81, 80, -104, 80, -105, 31, -81, 31, -81, -34, -104, -34, -105, -82, -79, -82, -79, -113, -17, -76, 7, -111, 77, -18)
+
+[node name="PrimaryRefreshTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="WeaponStartMarker" type="Marker2D" parent="."]
+position = Vector2(121, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="timeout" from="PrimaryRefreshTimer" to="." method="_on_primary_refresh_timer_timeout"]

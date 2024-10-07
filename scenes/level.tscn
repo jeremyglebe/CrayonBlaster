@@ -14,6 +14,8 @@ b = Vector2(0, 648)
 [node name="Level" type="Node2D"]
 script = ExtResource("1_itwfw")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="UpperBorder" type="StaticBody2D" parent="Borders"]
@@ -66,4 +68,9 @@ autostart = true
 
 [node name="Meteors" type="Node2D" parent="."]
 
+[node name="PlasmaDarts" type="Node2D" parent="."]
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
+[connection signal="primary_weapon" from="Player" to="." method="_on_player_primary_weapon"]
 [connection signal="timeout" from="MeteorSpawnTimer" to="." method="_on_meteor_spawn_timer_timeout"]

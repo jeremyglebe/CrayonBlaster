@@ -1,14 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp3yrwg8we2in"]
+[gd_scene load_steps=4 format=3 uid="uid://dp3yrwg8we2in"]
 
+[ext_resource type="Script" path="res://scenes/plasma_dart.gd" id="1_6dhim"]
 [ext_resource type="Texture2D" uid="uid://6piiax4tuk5i" path="res://images/Crayon_PlasmaDart.png" id="1_jy4r3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gkof"]
 size = Vector2(248, 26)
 
 [node name="PlasmaDart" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_6dhim")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jy4r3")
+offset = Vector2(100, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(100, 0)
 shape = SubResource("RectangleShape2D_8gkof")
