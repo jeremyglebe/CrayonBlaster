@@ -2,10 +2,11 @@ extends Node2D
 
 var _VIEWPORT_WIDTH: float
 var game_over := false
+var score := 0
 
 # Meteors
 var meteor_scene: PackedScene = load("res://scenes/meteor.tscn")
-const _METEOR_SCALE := 0.25
+const _METEOR_SCALE := 0.20
 
 # Plasma Darts
 var plasma_dart_scene: PackedScene = load("res://scenes/plasma_dart.tscn")
@@ -46,11 +47,17 @@ func _on_player_game_over(player: PlayerNode):
 
 func _on_meteor_destroyed(meteor: MeteorNode):
 	play_sound(meteor.sound_explode)
+	increase_score(1)
 
 
 func _on_audio_stream_player_finished():
 	if game_over:
 		get_tree().reload_current_scene()
+
+
+func increase_score(points):
+	score += points
+	$ScoreLabel.text = str(score)
 
 
 func spawn_random_meteor():

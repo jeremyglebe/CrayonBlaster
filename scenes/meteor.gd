@@ -67,14 +67,14 @@ func _process(delta: float):
 
 
 func _on_body_entered(body):
-	print("Meteor collided with ", body)
+	print("Meteor collided with ", body.name, " ", body)
 	destroyed.emit(self)
 	body.queue_free()
 	queue_free()
 
 
 func _on_area_entered(area):
-	print("Meteor collided with", area)
+	print("Meteor collided with ", area.name, " ", area)
 	destroyed.emit(self)
 	area.queue_free()
 	queue_free()
