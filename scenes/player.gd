@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var forward_speed := 200.0 # pixels
 @export var reverse_speed := 100.0 # pixels
 @export var turn_speed := PI # radians
-@export var strafe_speed := 125.0 # pixels
+@export var strafe_speed := 75.0 # pixels
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,20 +29,20 @@ func control_step(delta: float):
 	velocity = Vector2()
 	# Forward
 	if Input.is_action_pressed("forward"):
-		velocity += get_facing_vector() * forward_speed
+		velocity += get_facing_vector() * forward_speed * Input.get_action_strength("forward")
 	# Reverse
 	if Input.is_action_pressed("reverse"):
-		velocity -= get_facing_vector() * reverse_speed
+		velocity -= get_facing_vector() * reverse_speed * Input.get_action_strength("reverse")
 	# Turning
 	if Input.is_action_pressed("turn left"):
-		facing_direction -= turn_speed * delta
+		facing_direction -= turn_speed * delta * Input.get_action_strength("turn left")
 	if Input.is_action_pressed("turn right"):
-		facing_direction += turn_speed * delta
+		facing_direction += turn_speed * delta * Input.get_action_strength("turn right")
 	# Strafing
 	if Input.is_action_pressed("strafe left"):
-		velocity -= get_right_vector() * strafe_speed
+		velocity -= get_right_vector() * strafe_speed * Input.get_action_strength("strafe left")
 	if Input.is_action_pressed("strafe right"):
-		velocity += get_right_vector() * strafe_speed
+		velocity += get_right_vector() * strafe_speed * Input.get_action_strength("strafe right")
 
 
 func get_facing_vector() -> Vector2:

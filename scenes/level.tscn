@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqb2xgi5of3vk"]
+[gd_scene load_steps=7 format=3 uid="uid://cqb2xgi5of3vk"]
 
 [ext_resource type="Texture2D" uid="uid://dtnbyswrvxw3r" path="res://images/BG_PaperDark.png" id="1_8w5je"]
 [ext_resource type="Texture2D" uid="uid://b8udpr8rtbqpr" path="res://images/BG_Space.png" id="1_6835k"]
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_itwfw"]
 [ext_resource type="PackedScene" uid="uid://b4y4tnml5r62n" path="res://scenes/player.tscn" id="1_vryry"]
-[ext_resource type="PackedScene" uid="uid://c2b4r73wd5opv" path="res://scenes/meteor.tscn" id="4_022ek"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_7xjaf"]
 b = Vector2(1152, 0)
@@ -18,23 +17,27 @@ script = ExtResource("1_itwfw")
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="UpperBorder" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/UpperBorder"]
 shape = SubResource("SegmentShape2D_7xjaf")
 
 [node name="LowerBorder" type="StaticBody2D" parent="Borders"]
 position = Vector2(0, 648)
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/LowerBorder"]
 shape = SubResource("SegmentShape2D_7xjaf")
 
 [node name="LeftBorder" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/LeftBorder"]
 shape = SubResource("SegmentShape2D_ruh1k")
 
 [node name="RightBorder" type="StaticBody2D" parent="Borders"]
 position = Vector2(1152, 0)
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RightBorder"]
 shape = SubResource("SegmentShape2D_ruh1k")
@@ -56,12 +59,6 @@ region_rect = Rect2(0, 0, 1200, 700)
 [node name="Player" parent="." instance=ExtResource("1_vryry")]
 position = Vector2(576, 600)
 scale = Vector2(0.25, 0.25)
-
-[node name="Meteor" parent="." instance=ExtResource("4_022ek")]
-position = Vector2(577, 317)
-scale = Vector2(0.25, 0.25)
-spin_direction = 2
-random_spin_speed_enabled = true
 
 [node name="MeteorSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0

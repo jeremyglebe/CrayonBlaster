@@ -4,9 +4,10 @@
 [ext_resource type="Script" path="res://scenes/meteor.gd" id="1_xtmvn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nj527"]
-radius = 110.0
+radius = 124.63
 
 [node name="Meteor" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_xtmvn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
