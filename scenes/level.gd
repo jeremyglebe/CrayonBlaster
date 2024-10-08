@@ -55,6 +55,11 @@ func _on_explosions_explosion_finished(explosion: ExplosionNode):
 			get_tree().reload_current_scene()
 
 
+func _on_bgm_warning_signal_finished():
+	$BGM_Warning_Signal.volume_db = -80
+	create_tween().tween_property($BGM_Warning_Signal, 'volume_db', -10, 2)
+
+
 func create_explosion(explosion_position: Vector2, explosion_type: ExplosionNode.ExplosionType):
 	var explosion := explosion_scene.instantiate() as ExplosionNode
 	explosion.scale = Vector2(_EXPLOSION_SCALE, _EXPLOSION_SCALE)
@@ -86,3 +91,4 @@ func star_randomizer():
 		var star_scale := randf_range(0.05, 0.15)
 		star.scale = Vector2(star_scale, star_scale)
 		star.speed_scale = randf_range(0.5, 1.5)
+
