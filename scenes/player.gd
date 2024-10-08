@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name PlayerNode
 
-var sound_explode := load("res://audio/fx/long_explode.mp3")
 var sound_shot := load("res://audio/fx/shot.mp3")
 
 signal game_over(player)

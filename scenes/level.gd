@@ -1,6 +1,7 @@
 extends Node2D
 
-var _VIEWPORT_WIDTH: float
+@onready var _VIEWPORT_WIDTH := get_viewport().get_visible_rect().size.x
+@onready var _VIEWPORT_HEIGHT := get_viewport().get_visible_rect().size.y
 var game_over := false
 var score := 0
 
@@ -12,10 +13,13 @@ const _METEOR_SCALE := 0.20
 var plasma_dart_scene: PackedScene = load("res://scenes/plasma_dart.tscn")
 const _PLASMA_DART_SCALE := 0.15
 
+# Explosions
+var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
+const _EXPLOSION_SCALE := 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_VIEWPORT_WIDTH = get_viewport().get_visible_rect().size.x
+	star_randomizer()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,14 +46,21 @@ func _on_player_primary_weapon(weapon_position: Vector2, vec_weapon_direction: V
 
 func _on_player_game_over(player: PlayerNode):
 	game_over = true
-	play_sound(player.sound_explode)
+	var new_explosion := explosion_scene.instantiate() as ExplosionNode
+	new_explosion.scale = Vector2(_EXPLOSION_SCALE, _EXPLOSION_SCALE)
+	new_explosion.position = player.position
+	new_explosion.explosion_type = "Ship"
+	$Explosions.add_child(new_explosion)
 
 
 func _on_meteor_destroyed(meteor: MeteorNode):
-	play_sound(meteor.sound_explode)
 	increase_score(1)
-
-
+	var new_explosion := explosion_scene.instantiate() as ExplosionNode
+	new_explosion.scale = Vector2(_EXPLOSION_SCALE, _EXPLOSION_SCALE)
+	new_explosion.position = meteor.position
+	new_explosion.explosion_type = "Meteor"
+	$Explosions.add_child(new_explosion)
+	
 func _on_audio_stream_player_finished():
 	if game_over:
 		get_tree().reload_current_scene()
@@ -73,7 +84,9 @@ func spawn_random_meteor():
 	$Meteors.add_child(new_meteor)
 
 
-func play_sound(sound):
-	# if !$AudioStreamPlayer.playing:
-		$AudioStreamPlayer.stream = sound
-		$AudioStreamPlayer.play()
+func star_randomizer():
+	for star in $Stars.get_children():
+		star.position = Vector2(randf_range(0, _VIEWPORT_WIDTH), randf_range(0, _VIEWPORT_HEIGHT))
+		var star_scale := randf_range(0.05, 0.15)
+		star.scale = Vector2(star_scale, star_scale)
+		star.speed_scale = randf_range(0.5, 1.5)

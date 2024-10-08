@@ -1,8 +1,6 @@
 extends Area2D
 class_name MeteorNode
 
-var sound_explode := load("res://audio/fx/explode.mp3")
-
 enum MeteorSpinDirection {
 	NONE = 0,
 	COUNTERCLOCKWISE = -1,
