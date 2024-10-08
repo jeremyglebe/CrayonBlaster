@@ -2,18 +2,12 @@ extends Node2D
 
 @onready var _VIEWPORT_WIDTH := get_viewport().get_visible_rect().size.x
 @onready var _VIEWPORT_HEIGHT := get_viewport().get_visible_rect().size.y
-var game_over := false
 var score := 0
 
-# Meteors
+# Loading child scenes
 var meteor_scene: PackedScene = load("res://scenes/meteor.tscn")
-const _METEOR_SCALE := 0.20
-
-# Plasma Darts
 var plasma_dart_scene: PackedScene = load("res://scenes/plasma_dart.tscn")
 const _PLASMA_DART_SCALE := 0.15
-
-# Explosions
 var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
 const _EXPLOSION_SCALE := 3.0
 
@@ -45,7 +39,6 @@ func _on_player_primary_weapon(weapon_position: Vector2, vec_weapon_direction: V
 
 
 func _on_player_game_over(player: PlayerNode):
-	game_over = true
 	create_explosion(player.position, ExplosionNode.ExplosionType.SHIP)
 
 
@@ -79,8 +72,6 @@ func increase_score(points):
 func spawn_random_meteor():
 	# Create a new meteor
 	var new_meteor := meteor_scene.instantiate() as MeteorNode
-	# Configure visual properties
-	new_meteor.scale = Vector2(_METEOR_SCALE, _METEOR_SCALE)
 	# Configure random position
 	new_meteor.set_random_position(0, _VIEWPORT_WIDTH, -200, 0)
 	# Callback for meteor.destroyed signal

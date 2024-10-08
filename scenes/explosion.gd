@@ -35,6 +35,7 @@ func _process(_delta):
 
 func _on_animated_sprite_2d_animation_finished():
 	_anim_finished = true
+	$AnimatedSprite2D.queue_free()
 
 
 func _on_audio_stream_player_2d_finished():
