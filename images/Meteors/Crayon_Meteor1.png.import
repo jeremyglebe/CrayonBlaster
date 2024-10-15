@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e7k6qmn56dar"
-path="res://.godot/imported/Crayon_Meteor2.png-3008fef988a15acda95decd9d6420b48.ctex"
+uid="uid://dpcat0l1s0atr"
+path="res://.godot/imported/Crayon_Meteor1.png-883d396ac0743dad9b18eaf289dea11e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Crayon_Meteor2.png"
-dest_files=["res://.godot/imported/Crayon_Meteor2.png-3008fef988a15acda95decd9d6420b48.ctex"]
+source_file="res://images/Meteors/Crayon_Meteor1.png"
+dest_files=["res://.godot/imported/Crayon_Meteor1.png-883d396ac0743dad9b18eaf289dea11e.ctex"]
 
 [params]
 

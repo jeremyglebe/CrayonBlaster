@@ -1,26 +1,83 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4y4tnml5r62n"]
+[gd_scene load_steps=7 format=3 uid="uid://b4y4tnml5r62n"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_c6l84"]
-[ext_resource type="Texture2D" uid="uid://c224qovbanou1" path="res://images/Cutout_PlayerShip.png" id="2_bvwpg"]
+[ext_resource type="Texture2D" uid="uid://c0vuf5qnl21kn" path="res://images/Crayon_PlasmaBall.png" id="2_31gwt"]
+[ext_resource type="Texture2D" uid="uid://dqo0yfmcac5wf" path="res://images/Crayon_PlayerShip.png" id="2_e3yta"]
+
+[sub_resource type="Curve" id="Curve_b7g33"]
+max_value = 0.05
+_data = [Vector2(0, 0.05), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_dlht1"]
+resource_name = "flashing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0u1ax"]
+_data = {
+"flashing": SubResource("Animation_dlht1")
+}
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_c6l84")
 
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="LeftBoosterParticles" type="CPUParticles2D" parent="Particles"]
+position = Vector2(-114, -60)
+amount = 24
+texture = ExtResource("2_31gwt")
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_b7g33")
+
+[node name="RightBoosterParticles" type="CPUParticles2D" parent="Particles"]
+position = Vector2(-114, 60)
+amount = 24
+texture = ExtResource("2_31gwt")
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_b7g33")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_bvwpg")
+texture = ExtResource("2_e3yta")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(107, 0, 76, 18, 6, 110, -15, 74, -80, 114, -81, 80, -104, 80, -105, 31, -81, 31, -81, -34, -104, -34, -105, -82, -79, -82, -79, -113, -17, -76, 7, -111, 77, -18)
-
-[node name="PrimaryRefreshTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
 
 [node name="WeaponStartMarker" type="Marker2D" parent="."]
 position = Vector2(121, 0)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
-[connection signal="timeout" from="PrimaryRefreshTimer" to="." method="_on_primary_refresh_timer_timeout"]
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="RecoveryTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="PrimaryRefreshTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0u1ax")
+}
+
+[connection signal="timeout" from="Timers/RecoveryTimer" to="." method="_on_recovery_timer_timeout"]
+[connection signal="timeout" from="Timers/PrimaryRefreshTimer" to="." method="_on_primary_refresh_timer_timeout"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bba6qb3kg26cm"]
 
 [ext_resource type="Theme" uid="uid://d1vqy4ayvnrfq" path="res://fonts/game_theme.tres" id="1_51ore"]
-[ext_resource type="Texture2D" uid="uid://bi1mdvlnins52" path="res://images/Cutout_Heart.png" id="1_qigav"]
+[ext_resource type="Texture2D" uid="uid://dtmwr4xu0ytnd" path="res://images/Crayon_Heart.png" id="2_snqsv"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -39,25 +39,25 @@ theme_override_constants/separation = 8
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_qigav")
+texture = ExtResource("2_snqsv")
 expand_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_qigav")
+texture = ExtResource("2_snqsv")
 expand_mode = 2
 
 [node name="TextureRect3" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_qigav")
+texture = ExtResource("2_snqsv")
 expand_mode = 2
 
 [node name="TextureRect4" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_qigav")
+texture = ExtResource("2_snqsv")
 expand_mode = 2
 
 [node name="TextureRect5" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_qigav")
+texture = ExtResource("2_snqsv")
 expand_mode = 2

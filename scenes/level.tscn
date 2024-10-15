@@ -307,6 +307,7 @@ frame_progress = 0.945831
 [node name="Player" parent="." instance=ExtResource("1_vryry")]
 position = Vector2(576, 600)
 scale = Vector2(0.25, 0.25)
+health = 2
 
 [node name="MeteorSpawnTimer" type="Timer" parent="."]
 wait_time = 0.25
@@ -322,6 +323,6 @@ metadata/_edit_lock_ = true
 [node name="UI" parent="." instance=ExtResource("10_ns5bl")]
 
 [connection signal="finished" from="BGM_Warning_Signal" to="." method="_on_bgm_warning_signal_finished"]
-[connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
+[connection signal="finished" from="Player" to="." method="_on_player_finished"]
 [connection signal="primary_weapon" from="Player" to="." method="_on_player_primary_weapon"]
 [connection signal="timeout" from="MeteorSpawnTimer" to="." method="_on_meteor_spawn_timer_timeout"]

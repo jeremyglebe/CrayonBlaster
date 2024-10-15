@@ -34,8 +34,9 @@ func _on_player_primary_weapon(weapon_position: Vector2, vec_weapon_direction: V
 	$PlasmaDarts.add_child(new_plasma_dart)
 
 
-func _on_player_game_over(player: PlayerNode):
-	create_explosion(player.position, ExplosionNode.ExplosionType.SHIP)
+func _on_player_finished(player: PlayerNode):
+	get_tree().reload_current_scene()
+	
 
 
 func _on_meteor_destroyed(meteor: MeteorNode):
@@ -48,8 +49,7 @@ func _on_explosions_explosion_finished(explosion: ExplosionNode):
 		ExplosionNode.ExplosionType.METEOR:
 			pass
 		ExplosionNode.ExplosionType.SHIP:
-			get_tree().reload_current_scene()
-
+			pass
 
 func _on_bgm_warning_signal_finished():
 	$BGM_Warning_Signal.volume_db = -80

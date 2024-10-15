@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2b4r73wd5opv"]
 
-[ext_resource type="Texture2D" uid="uid://c8rfws27ito3r" path="res://images/Cutout_Meteor1.png" id="1_epe55"]
 [ext_resource type="Script" path="res://scenes/meteor.gd" id="1_xtmvn"]
+[ext_resource type="Texture2D" uid="uid://dpcat0l1s0atr" path="res://images/Meteors/Crayon_Meteor1.png" id="2_njuev"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nj527"]
-radius = 122.409
+radius = 100.0
 
 [node name="Meteor" type="Area2D"]
 scale = Vector2(0.2, 0.2)
@@ -13,7 +13,7 @@ collision_mask = 9
 script = ExtResource("1_xtmvn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_epe55")
+texture = ExtResource("2_njuev")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_nj527")

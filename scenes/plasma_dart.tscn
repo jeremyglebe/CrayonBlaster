@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c0vuf5qnl21kn" path="res://images/Crayon_PlasmaBall.png" id="2_se8sa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5pbo2"]
-radius = 129.062
+radius = 160.139
 
 [node name="PlasmaDart" type="Area2D"]
 scale = Vector2(0.15, 0.15)

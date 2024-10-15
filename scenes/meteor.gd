@@ -43,7 +43,7 @@ var vec_direction: Vector2:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if randomize_image:
-		$Sprite2D.texture = load("res://images/Cutout_Meteor" + str(randi_range(IMAGE_INDEX_MIN, IMAGE_INDEX_MAX)) + ".png")
+		$Sprite2D.texture = load("res://images/Meteors/Crayon_Meteor" + str(randi_range(IMAGE_INDEX_MIN, IMAGE_INDEX_MAX)) + ".png")
 	if randomize_direction:
 		rad_direction = randf_range(rad_min_random_direction, rad_max_random_direction)
 
@@ -64,15 +64,16 @@ func _process(delta: float):
 	check_delete()
 
 
-func _on_body_entered(body):
-	print("Meteor collided with ", body.name, " ", body)
+func _on_body_entered(body: PhysicsBody2D):
 	destroyed.emit(self)
-	body.queue_free()
+	if body.name == "Player":
+		(body as PlayerNode).on_damage(1)
+	else:
+		body.queue_free()
 	queue_free()
 
 
 func _on_area_entered(area):
-	print("Meteor collided with ", area.name, " ", area)
 	destroyed.emit(self)
 	area.queue_free()
 	queue_free()
