@@ -307,7 +307,6 @@ frame_progress = 0.945831
 [node name="Player" parent="." instance=ExtResource("1_vryry")]
 position = Vector2(576, 600)
 scale = Vector2(0.25, 0.25)
-health = 2
 
 [node name="MeteorSpawnTimer" type="Timer" parent="."]
 wait_time = 0.25

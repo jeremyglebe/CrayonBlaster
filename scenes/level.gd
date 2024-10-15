@@ -35,7 +35,8 @@ func _on_player_primary_weapon(weapon_position: Vector2, vec_weapon_direction: V
 
 
 func _on_player_finished(player: PlayerNode):
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	
 
 
@@ -43,13 +44,6 @@ func _on_meteor_destroyed(meteor: MeteorNode):
 	increase_score(1)
 	create_explosion(meteor.position, ExplosionNode.ExplosionType.METEOR)
 
-
-func _on_explosions_explosion_finished(explosion: ExplosionNode):
-	match explosion.explosion_type:
-		ExplosionNode.ExplosionType.METEOR:
-			pass
-		ExplosionNode.ExplosionType.SHIP:
-			pass
 
 func _on_bgm_warning_signal_finished():
 	$BGM_Warning_Signal.volume_db = -80
@@ -60,9 +54,6 @@ func create_explosion(explosion_position: Vector2, explosion_type: ExplosionNode
 	var explosion := explosion_scene.instantiate() as ExplosionNode
 	explosion.position = explosion_position
 	explosion.explosion_type = explosion_type
-	explosion.explosion_finished.connect(_on_explosions_explosion_finished)
-	if explosion_type == ExplosionNode.ExplosionType.SHIP:
-		explosion.scale = Vector2(1.5, 1.5)
 	$Explosions.add_child(explosion)
 
 

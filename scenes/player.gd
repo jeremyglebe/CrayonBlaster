@@ -49,6 +49,7 @@ var vec_righthand_direction: Vector2:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().call_group("ui", "set_health", health)
 	$Timers/RecoveryTimer.wait_time = recovery_time
 
 
@@ -114,6 +115,7 @@ func on_damage(damage_amount: int):
 			state = ShipState.Recovery
 			$Timers/RecoveryTimer.start()
 			$AnimationPlayer.play("flashing", _DEFAULT_CUSTOM_BLEND, _ANIM_SPEED_MULTIPLIER)
+	get_tree().call_group("ui", "set_health", health)
 
 
 func on_destroyed():
