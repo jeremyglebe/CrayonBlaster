@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var _VIEWPORT_WIDTH := get_viewport().get_visible_rect().size.x
 @onready var _VIEWPORT_HEIGHT := get_viewport().get_visible_rect().size.y
-var score := 0
 
 # Loading child scenes
 var meteor_scene: PackedScene = load("res://scenes/meteor.tscn")
@@ -34,11 +33,10 @@ func _on_player_primary_weapon(weapon_position: Vector2, vec_weapon_direction: V
 	$PlasmaDarts.add_child(new_plasma_dart)
 
 
-func _on_player_finished(player: PlayerNode):
+func _on_player_finished(_player: PlayerNode):
 	#get_tree().reload_current_scene()
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	
-
 
 func _on_meteor_destroyed(meteor: MeteorNode):
 	increase_score(1)
@@ -58,8 +56,8 @@ func create_explosion(explosion_position: Vector2, explosion_type: ExplosionNode
 
 
 func increase_score(points):
-	score += points
-	$UI/MarginContainer/ScoreLabel.text = str(score)
+	Global.score += points
+	$UI/MarginContainer/ScoreLabel.text = str(Global.score)
 
 
 func spawn_random_meteor():
@@ -79,4 +77,3 @@ func star_randomizer():
 		var star_scale := randf_range(0.05, 0.15)
 		star.scale = Vector2(star_scale, star_scale)
 		star.speed_scale = randf_range(0.5, 1.5)
-
