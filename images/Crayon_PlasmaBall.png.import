@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ekovi44c7h54"
-path="res://.godot/imported/BG_Paper.png-8e1143aeb25677cd021f4a95ca8782f2.ctex"
+uid="uid://c0vuf5qnl21kn"
+path="res://.godot/imported/Crayon_PlasmaBall.png-4868d4dcd17fae4a30dccd772ee0d2ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/BG_Paper.png"
-dest_files=["res://.godot/imported/BG_Paper.png-8e1143aeb25677cd021f4a95ca8782f2.ctex"]
+source_file="res://images/Crayon_PlasmaBall.png"
+dest_files=["res://.godot/imported/Crayon_PlasmaBall.png-4868d4dcd17fae4a30dccd772ee0d2ac.ctex"]
 
 [params]
 

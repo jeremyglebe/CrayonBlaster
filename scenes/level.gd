@@ -7,9 +7,7 @@ var score := 0
 # Loading child scenes
 var meteor_scene: PackedScene = load("res://scenes/meteor.tscn")
 var plasma_dart_scene: PackedScene = load("res://scenes/plasma_dart.tscn")
-const _PLASMA_DART_SCALE := 0.15
 var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
-const _EXPLOSION_SCALE := 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,8 +26,6 @@ func _on_meteor_spawn_timer_timeout():
 func _on_player_primary_weapon(weapon_position: Vector2, vec_weapon_direction: Vector2):
 	# Create a new plasma dart
 	var new_plasma_dart := plasma_dart_scene.instantiate() as PlasmaDartNode
-	# Configure visual properties
-	new_plasma_dart.scale = Vector2(_PLASMA_DART_SCALE, _PLASMA_DART_SCALE)
 	# Configure position
 	new_plasma_dart.position = weapon_position
 	# Configure direction
@@ -62,16 +58,17 @@ func _on_bgm_warning_signal_finished():
 
 func create_explosion(explosion_position: Vector2, explosion_type: ExplosionNode.ExplosionType):
 	var explosion := explosion_scene.instantiate() as ExplosionNode
-	explosion.scale = Vector2(_EXPLOSION_SCALE, _EXPLOSION_SCALE)
 	explosion.position = explosion_position
 	explosion.explosion_type = explosion_type
 	explosion.explosion_finished.connect(_on_explosions_explosion_finished)
+	if explosion_type == ExplosionNode.ExplosionType.SHIP:
+		explosion.scale = Vector2(1.5, 1.5)
 	$Explosions.add_child(explosion)
 
 
 func increase_score(points):
 	score += points
-	$ScoreLabel.text = str(score)
+	$UI/MarginContainer/ScoreLabel.text = str(score)
 
 
 func spawn_random_meteor():

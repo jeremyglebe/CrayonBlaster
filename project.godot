@@ -10,14 +10,10 @@ config_version=5
 
 [application]
 
-config/name="PewPewGame"
+config/name="CrayonBlaster"
 run/main_scene="res://scenes/level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
-
-[display]
-
-window/stretch/mode="canvas_items"
 
 [input]
 

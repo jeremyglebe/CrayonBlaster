@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d1vqy4ayvnrfq"]
+
+[ext_resource type="FontFile" uid="uid://bml6ssnp751o6" path="res://fonts/crayon-libre-font/CrayonLibre-vm6r9.ttf" id="1_n6ngw"]
+
+[resource]
+default_font = ExtResource("1_n6ngw")
+default_font_size = 16
