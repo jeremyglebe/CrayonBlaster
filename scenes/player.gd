@@ -15,6 +15,7 @@ const _SECONDARY_FLASH_LOOPS := 3
 const _SECONDARY_FLASH_LOOP_TIME := 0.35
 
 var sound_shot := load("res://audio/fx/shot.mp3")
+var sound_laser := load("res://audio/fx/laser.mp3")
 var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
 
 signal finished(player)
@@ -117,10 +118,10 @@ func control_step(delta: float):
 		if Input.is_action_pressed("strafe right"):
 			velocity += vec_righthand_direction * strafe_speed * Input.get_action_strength("strafe right")
 		# Shooting
-		if Input.is_action_just_pressed("primary weapon"):
-			emit_primary_weapon()
 		if Input.is_action_just_pressed("secondary weapon"):
 			emit_secondary_weapon()
+		elif Input.is_action_just_pressed("primary weapon"):
+			emit_primary_weapon()
 
 
 func emit_primary_weapon():
@@ -136,7 +137,7 @@ func emit_secondary_weapon():
 	if secondary_weapon_ready:
 		var vec_weapon_direction = vec_facing_direction
 		secondary_weapon.emit($WeaponStartMarker.global_position, vec_weapon_direction)
-		play_sound(sound_shot)
+		play_sound(sound_laser)
 		secondary_weapon_ready = false
 		$Timers/SecondaryRefreshTimer.start()
 

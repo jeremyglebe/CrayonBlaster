@@ -4,7 +4,7 @@ extends Area2D
 @export var max_length := 4096.0
 @export var speed := 10000.0
 @export var life_time := 0.15
-@export var fade_time := 0.25
+@export var fade_time := 0.5
 @export var rad_facing_direction := 0.0
 
 var extension_time: float:
