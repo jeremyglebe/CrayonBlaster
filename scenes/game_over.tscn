@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://5b8u47ry4fb8"]
+[gd_scene load_steps=6 format=3 uid="uid://5b8u47ry4fb8"]
 
 [ext_resource type="Texture2D" uid="uid://ekovi44c7h54" path="res://images/BG_Paper/BG_Paper.png" id="1_1dq50"]
 [ext_resource type="Script" path="res://scenes/game_over.gd" id="1_c25bx"]
 [ext_resource type="Theme" uid="uid://d1vqy4ayvnrfq" path="res://fonts/game_theme.tres" id="1_sbp5q"]
-[ext_resource type="PackedScene" uid="uid://cqb2xgi5of3vk" path="res://scenes/level.tscn" id="2_hw6n7"]
 [ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="4_ixwna"]
 
 [sub_resource type="Texture2D" id="Texture2D_lsa38"]
@@ -22,7 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c25bx")
-level_scene = ExtResource("2_hw6n7")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -86,7 +84,7 @@ layout_mode = 2
 theme = ExtResource("1_sbp5q")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-text = "PRESS            TO PLAY AGAIN"
+text = "PRESS            TO RETURN TO MENU"
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -96,10 +94,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -101.0
-offset_top = -75.0
-offset_right = -1.0
-offset_bottom = 25.0
+offset_left = -138.0
+offset_top = -74.9999
+offset_right = -38.0
+offset_bottom = 25.0001
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)

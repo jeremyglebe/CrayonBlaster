@@ -1,0 +1,310 @@
+[gd_scene load_steps=14 format=3 uid="uid://d21g227gfqbgg"]
+
+[ext_resource type="Script" path="res://scenes/title_screen.gd" id="1_s27t8"]
+[ext_resource type="Texture2D" uid="uid://ekovi44c7h54" path="res://images/BG_Paper/BG_Paper.png" id="1_ucqsl"]
+[ext_resource type="Theme" uid="uid://d1vqy4ayvnrfq" path="res://fonts/game_theme.tres" id="2_hds8v"]
+[ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="3_6x73u"]
+
+[sub_resource type="Texture2D" id="Texture2D_npo7n"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_6x73u")
+path = "forward"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_wlpj0"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_6x73u")
+path = "reverse"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_2r3ry"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_6x73u")
+path = "strafe left"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_t5qln"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_6x73u")
+path = "strafe right"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_tefge"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_6x73u")
+path = "turn left"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_tgumg"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_6x73u")
+path = "turn right"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_ctcjv"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_6x73u")
+path = "primary weapon"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_n1vym"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_6x73u")
+path = "secondary weapon"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_x4sgy"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_6x73u")
+path = "accept"
+show_mode = 0
+force_type = 0
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s27t8")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -600.0
+offset_right = 576.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ucqsl")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+theme_override_constants/margin_top = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 112
+text = "CRAYON BLASTER"
+horizontal_alignment = 1
+
+[node name="MovementControls" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -517.0
+offset_top = -144.0
+offset_right = 517.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 24
+columns = 6
+
+[node name="ForwardLabel" type="Label" parent="MovementControls"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "FORWARD"
+horizontal_alignment = 1
+
+[node name="ReverseLabel" type="Label" parent="MovementControls"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "REVERSE"
+horizontal_alignment = 1
+
+[node name="StrafeLLabel" type="Label" parent="MovementControls"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "STRAFE LEFT"
+horizontal_alignment = 1
+
+[node name="StrafeRLabel" type="Label" parent="MovementControls"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "STRAFE RIGHT"
+horizontal_alignment = 1
+
+[node name="TurnLLabel" type="Label" parent="MovementControls"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "TURN LEFT"
+horizontal_alignment = 1
+
+[node name="TurnRLabel" type="Label" parent="MovementControls"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "TURN RIGHT"
+horizontal_alignment = 1
+
+[node name="ForwardTexture" type="TextureRect" parent="MovementControls"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = SubResource("Texture2D_npo7n")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ReverseTexture" type="TextureRect" parent="MovementControls"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = SubResource("Texture2D_wlpj0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StrafeLTexture" type="TextureRect" parent="MovementControls"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = SubResource("Texture2D_2r3ry")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StrafeRTexture" type="TextureRect" parent="MovementControls"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = SubResource("Texture2D_t5qln")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TurnLeftTexture" type="TextureRect" parent="MovementControls"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = SubResource("Texture2D_tefge")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TurnRightTexture" type="TextureRect" parent="MovementControls"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = SubResource("Texture2D_tgumg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CombatControls" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -0.5
+offset_right = 298.0
+offset_bottom = 120.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 64
+columns = 2
+
+[node name="PrimaryLabel" type="Label" parent="CombatControls"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "PRIMARY WEAPON"
+horizontal_alignment = 1
+
+[node name="SecondaryLabel" type="Label" parent="CombatControls"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "SECONDARY WEAPON"
+horizontal_alignment = 1
+
+[node name="PrimaryTexture" type="TextureRect" parent="CombatControls"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = SubResource("Texture2D_ctcjv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SecondaryTexture" type="TextureRect" parent="CombatControls"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = SubResource("Texture2D_n1vym")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 96
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("2_hds8v")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "START GAME"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -100.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("Texture2D_x4sgy")

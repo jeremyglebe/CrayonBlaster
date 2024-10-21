@@ -10,6 +10,7 @@ var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.score = 0
 	star_randomizer()
 
 
