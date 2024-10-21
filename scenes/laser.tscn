@@ -23,3 +23,8 @@ region_rect = Rect2(0, 0, 8, 16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_qgqgq")
+
+[node name="LifeTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

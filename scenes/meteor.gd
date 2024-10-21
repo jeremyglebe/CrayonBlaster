@@ -75,7 +75,8 @@ func _on_body_entered(body: PhysicsBody2D):
 
 func _on_area_entered(area):
 	destroyed.emit(self)
-	area.queue_free()
+	if area.is_in_group("solid_projectiles"):
+		area.queue_free()
 	queue_free()
 
 
