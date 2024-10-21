@@ -74,6 +74,10 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="SecondaryRefreshTimer" type="Timer" parent="Timers"]
+wait_time = 10.0
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_0u1ax")
@@ -81,3 +85,4 @@ libraries = {
 
 [connection signal="timeout" from="Timers/RecoveryTimer" to="." method="_on_recovery_timer_timeout"]
 [connection signal="timeout" from="Timers/PrimaryRefreshTimer" to="." method="_on_primary_refresh_timer_timeout"]
+[connection signal="timeout" from="Timers/SecondaryRefreshTimer" to="." method="_on_secondary_refresh_timer_timeout"]

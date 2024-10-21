@@ -9,6 +9,10 @@ enum ShipState {
 
 const _ANIM_SPEED_MULTIPLIER := 3.0
 const _DEFAULT_CUSTOM_BLEND := -1.0
+const _PRIMARY_FLASH_LOOPS := 1
+const _PRIMARY_FLASH_LOOP_TIME := 0.25
+const _SECONDARY_FLASH_LOOPS := 3
+const _SECONDARY_FLASH_LOOP_TIME := 0.35
 
 var sound_shot := load("res://audio/fx/shot.mp3")
 var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
@@ -31,6 +35,9 @@ signal secondary_weapon(weapon_position: Vector2, vec_weapon_direction: Vector2)
 
 var state := ShipState.Active
 var primary_weapon_ready := true
+var secondary_weapon_ready := true
+var primary_flash_enabled := false
+var secondary_flash_enabled := true
 
 var vec_facing_direction: Vector2:
 	get:
@@ -66,6 +73,22 @@ func _process(delta):
 
 func _on_primary_refresh_timer_timeout():
 	primary_weapon_ready = true
+	# Tween to flash purple when weapon is ready
+	if primary_flash_enabled:
+		var flash_tween = create_tween()
+		flash_tween.set_loops(_PRIMARY_FLASH_LOOPS)
+		flash_tween.tween_property($Sprite2D, 'modulate', Color(1, 0, 1, 1), _PRIMARY_FLASH_LOOP_TIME / 2)
+		flash_tween.tween_property($Sprite2D, 'modulate', Color(1, 1, 1, 1), _PRIMARY_FLASH_LOOP_TIME / 2)
+
+
+func _on_secondary_refresh_timer_timeout():
+	secondary_weapon_ready = true
+	# Tween to flash red when weapon is ready
+	if secondary_flash_enabled:
+		var flash_tween = create_tween()
+		flash_tween.set_loops(_SECONDARY_FLASH_LOOPS)
+		flash_tween.tween_property($Sprite2D, 'modulate', Color(1, 0, 0, 1), _SECONDARY_FLASH_LOOP_TIME / 2)
+		flash_tween.tween_property($Sprite2D, 'modulate', Color(1, 1, 1, 1), _SECONDARY_FLASH_LOOP_TIME / 2)
 
 
 func _on_recovery_timer_timeout():
@@ -110,12 +133,12 @@ func emit_primary_weapon():
 
 
 func emit_secondary_weapon():
-	if primary_weapon_ready:
+	if secondary_weapon_ready:
 		var vec_weapon_direction = vec_facing_direction
 		secondary_weapon.emit($WeaponStartMarker.global_position, vec_weapon_direction)
 		play_sound(sound_shot)
-		primary_weapon_ready = false
-		$Timers/PrimaryRefreshTimer.start()
+		secondary_weapon_ready = false
+		$Timers/SecondaryRefreshTimer.start()
 
 
 func on_damage(damage_amount: int):
