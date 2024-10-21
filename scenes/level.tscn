@@ -324,4 +324,5 @@ metadata/_edit_lock_ = true
 [connection signal="finished" from="BGM_Warning_Signal" to="." method="_on_bgm_warning_signal_finished"]
 [connection signal="finished" from="Player" to="." method="_on_player_finished"]
 [connection signal="primary_weapon" from="Player" to="." method="_on_player_primary_weapon"]
+[connection signal="secondary_weapon" from="Player" to="." method="_on_player_secondary_weapon"]
 [connection signal="timeout" from="MeteorSpawnTimer" to="." method="_on_meteor_spawn_timer_timeout"]

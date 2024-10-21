@@ -6,6 +6,7 @@ extends Node2D
 # Loading child scenes
 var meteor_scene: PackedScene = load("res://scenes/meteor.tscn")
 var plasma_dart_scene: PackedScene = load("res://scenes/plasma_dart.tscn")
+var laser_scene: PackedScene = load("res://scenes/laser.tscn")
 var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +33,17 @@ func _on_player_primary_weapon(weapon_position: Vector2, vec_weapon_direction: V
 	new_plasma_dart.rad_facing_direction = vec_weapon_direction.angle()
 	# Add the plasma dart to the scene
 	$PlasmaDarts.add_child(new_plasma_dart)
+
+
+func _on_player_secondary_weapon(weapon_position: Vector2, vec_weapon_direction: Vector2):
+	# Create a new laser
+	var new_laser := laser_scene.instantiate() as LaserNode
+	# Configure position
+	new_laser.position = weapon_position
+	# Configure direction
+	new_laser.rad_facing_direction = vec_weapon_direction.angle()
+	# Add the laser to the scene
+	$PlasmaDarts.add_child(new_laser)
 
 
 func _on_player_finished(_player: PlayerNode):

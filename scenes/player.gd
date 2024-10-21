@@ -16,6 +16,7 @@ var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
 signal finished(player)
 signal destroyed(player)
 signal primary_weapon(weapon_position: Vector2, vec_weapon_direction: Vector2)
+signal secondary_weapon(weapon_position: Vector2, vec_weapon_direction: Vector2)
 
 # Direction as radians, right is 0, increases clockwise
 @export var rad_facing_direction := 3 * PI / 2
@@ -95,12 +96,23 @@ func control_step(delta: float):
 		# Shooting
 		if Input.is_action_just_pressed("primary weapon"):
 			emit_primary_weapon()
+		if Input.is_action_just_pressed("secondary weapon"):
+			emit_secondary_weapon()
 
 
 func emit_primary_weapon():
 	if primary_weapon_ready:
 		var vec_weapon_direction = vec_facing_direction
 		primary_weapon.emit($WeaponStartMarker.global_position, vec_weapon_direction)
+		play_sound(sound_shot)
+		primary_weapon_ready = false
+		$Timers/PrimaryRefreshTimer.start()
+
+
+func emit_secondary_weapon():
+	if primary_weapon_ready:
+		var vec_weapon_direction = vec_facing_direction
+		secondary_weapon.emit($WeaponStartMarker.global_position, vec_weapon_direction)
 		play_sound(sound_shot)
 		primary_weapon_ready = false
 		$Timers/PrimaryRefreshTimer.start()
