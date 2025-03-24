@@ -43,3 +43,23 @@ theme_override_constants/separation = 8
 layout_mode = 2
 texture = ExtResource("2_snqsv")
 expand_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -59.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+theme = ExtResource("1_51ore")
+theme_override_colors/font_color = Color(0.870588, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Threat Level
+0"
+horizontal_alignment = 1

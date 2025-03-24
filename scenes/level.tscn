@@ -308,10 +308,6 @@ frame_progress = 0.945831
 position = Vector2(576, 600)
 scale = Vector2(0.25, 0.25)
 
-[node name="MeteorSpawnTimer" type="Timer" parent="."]
-wait_time = 0.25
-autostart = true
-
 [node name="Meteors" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
@@ -321,8 +317,15 @@ metadata/_edit_lock_ = true
 
 [node name="UI" parent="." instance=ExtResource("10_ns5bl")]
 
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="MeteorSpawnTimer" type="Timer" parent="Timers"]
+
+[node name="DifficultyTimer" type="Timer" parent="Timers"]
+
 [connection signal="finished" from="BGM_Warning_Signal" to="." method="_on_bgm_warning_signal_finished"]
 [connection signal="finished" from="Player" to="." method="_on_player_finished"]
 [connection signal="primary_weapon" from="Player" to="." method="_on_player_primary_weapon"]
 [connection signal="secondary_weapon" from="Player" to="." method="_on_player_secondary_weapon"]
-[connection signal="timeout" from="MeteorSpawnTimer" to="." method="_on_meteor_spawn_timer_timeout"]
+[connection signal="timeout" from="Timers/MeteorSpawnTimer" to="." method="_on_meteor_spawn_timer_timeout"]
+[connection signal="timeout" from="Timers/DifficultyTimer" to="." method="_on_difficulty_timer_timeout"]
