@@ -65,6 +65,16 @@ theme_override_font_sizes/font_size = 32
 text = "SCORE: 0"
 horizontal_alignment = 1
 
+[node name="HintLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme = ExtResource("1_sbp5q")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Hint: you'll receive a random hint message every time you \"game over\""
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7

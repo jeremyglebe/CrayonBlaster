@@ -16,8 +16,8 @@ var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
 
 # Variables for difficulty and progression
 var progression_time_previous := 0.0
-# var progression_time := 10.0
-var progression_time := 3.0 # When I need to test difficulties faster
+var progression_time := 10.0
+# var progression_time := 3.0 # When I need to test difficulties faster
 const INITIAL_METEOR_SPAWN_RATE := 2.0
 const FASTEST_METEOR_SPAWN_RATE := 0.15
 
@@ -132,7 +132,7 @@ func spawn_random_meteor():
 	var new_meteor := meteor_scene.instantiate() as MeteorNode
 	# Choose a random spawn zone from the active spawn zones
 	var spawn_zone := active_spawn_zones[randi() % active_spawn_zones.size()]
-	print("Spawn zone: ", spawn_zone[0], ", ", spawn_zone[1], ", ", spawn_zone[2], ", ", spawn_zone[3])
+	# print("Spawn zone: ", spawn_zone[0], ", ", spawn_zone[1], ", ", spawn_zone[2], ", ", spawn_zone[3])
 	# Configure random position
 	new_meteor.set_random_position(spawn_zone[0], spawn_zone[1], spawn_zone[2], spawn_zone[3])
 
