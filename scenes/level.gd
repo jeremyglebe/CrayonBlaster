@@ -2,6 +2,11 @@ extends Node2D
 
 @onready var _VIEWPORT_WIDTH := get_viewport().get_visible_rect().size.x
 @onready var _VIEWPORT_HEIGHT := get_viewport().get_visible_rect().size.y
+@onready var TOP_SPAWN_BOUNDS := Vector4(0, _VIEWPORT_WIDTH, -200, 0)
+@onready var BOTTOM_SPAWN_BOUNDS := Vector4(0, _VIEWPORT_WIDTH, _VIEWPORT_HEIGHT, _VIEWPORT_HEIGHT + 200)
+@onready var LEFT_SPAWN_BOUNDS := Vector4(-200, 0, 0, _VIEWPORT_HEIGHT)
+@onready var RIGHT_SPAWN_BOUNDS := Vector4(_VIEWPORT_WIDTH, _VIEWPORT_WIDTH + 200, 0, _VIEWPORT_HEIGHT)
+@onready var active_spawn_zones: Array[Vector4] = [TOP_SPAWN_BOUNDS]
 
 # Loading child scenes
 var meteor_scene: PackedScene = load("res://scenes/meteor.tscn")
@@ -11,7 +16,8 @@ var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
 
 # Variables for difficulty and progression
 var progression_time_previous := 0.0
-var progression_time := 10.0
+# var progression_time := 10.0
+var progression_time := 3.0 # When I need to test difficulties faster
 const INITIAL_METEOR_SPAWN_RATE := 2.0
 const FASTEST_METEOR_SPAWN_RATE := 0.15
 
@@ -109,7 +115,12 @@ func increase_difficulty():
 	# It is better because it is dynamic and easily updated
 	$Timers/MeteorSpawnTimer.wait_time = FASTEST_METEOR_SPAWN_RATE + (INITIAL_METEOR_SPAWN_RATE - FASTEST_METEOR_SPAWN_RATE) / (1 + Global.threat_level)
 	
-	# Other difficulty adjustments (such as obstacle types) may be set based on predefined difficulty levels (TODO, maybe?)
+	# Other difficulty adjustments (such as obstacle types) may be set based on predefined difficulty levels
+	match Global.threat_level:
+		2:
+			active_spawn_zones = [TOP_SPAWN_BOUNDS, BOTTOM_SPAWN_BOUNDS]
+		3:
+			active_spawn_zones = [TOP_SPAWN_BOUNDS, BOTTOM_SPAWN_BOUNDS, LEFT_SPAWN_BOUNDS, RIGHT_SPAWN_BOUNDS]
 
 func increase_score(points):
 	Global.base_score += points
@@ -119,8 +130,31 @@ func increase_score(points):
 func spawn_random_meteor():
 	# Create a new meteor
 	var new_meteor := meteor_scene.instantiate() as MeteorNode
+	# Choose a random spawn zone from the active spawn zones
+	var spawn_zone := active_spawn_zones[randi() % active_spawn_zones.size()]
+	print("Spawn zone: ", spawn_zone[0], ", ", spawn_zone[1], ", ", spawn_zone[2], ", ", spawn_zone[3])
 	# Configure random position
-	new_meteor.set_random_position(0, _VIEWPORT_WIDTH, -200, 0)
+	new_meteor.set_random_position(spawn_zone[0], spawn_zone[1], spawn_zone[2], spawn_zone[3])
+
+	# Configure random direction parameters
+	match spawn_zone:
+		# Top spawn zone
+		TOP_SPAWN_BOUNDS:
+			new_meteor.rad_min_random_direction = PI / 4
+			new_meteor.rad_max_random_direction = 3 * PI / 4
+		# Bottom spawn zone
+		BOTTOM_SPAWN_BOUNDS:
+			new_meteor.rad_min_random_direction = -3 * PI / 4
+			new_meteor.rad_max_random_direction = - PI / 4
+		# Left spawn zone
+		LEFT_SPAWN_BOUNDS:
+			new_meteor.rad_min_random_direction = 0
+			new_meteor.rad_max_random_direction = PI
+		# Right spawn zone
+		RIGHT_SPAWN_BOUNDS:
+			new_meteor.rad_min_random_direction = PI
+			new_meteor.rad_max_random_direction = 2 * PI
+
 	# Callback for meteor.destroyed signal
 	new_meteor.connect("destroyed", _on_meteor_destroyed)
 	# Add the meteor to the scene
